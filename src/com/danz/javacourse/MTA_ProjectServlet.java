@@ -15,17 +15,6 @@ public class MTA_ProjectServlet extends HttpServlet {
 			throws IOException {
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Application successfully loaded");
-		
-		Calculator circle = new Calculator();
-		Calculator triangle = new Calculator();
-		
-		DecimalFormat df = new DecimalFormat("0.000");
-		
-		circle.calculateCircle(50);
-		triangle.calculateTriOpp(30, 50);
-		resp.getWriter().println("Circle Area is " + df.format(circle.getCircleArea()) +
-								 "\n" +
-								 "Triangle opposite is " + df.format(triangle.getTriOpp()));
 	}
 }
 
