@@ -20,13 +20,4 @@ public class Calculator{
 		return triOpposite;
 	}
 	
-	public void main(String[] args){
-		Calculator circle, triangle;
-		circle = new Calculator();
-		triangle = new Calculator();
-		
-		circle.calculateCircle(50);
-		triangle.calculateTriOpp(30, 50);
-				
-	}
 }
