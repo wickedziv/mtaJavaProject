@@ -1,8 +1,8 @@
 package com.danz.javacourse;
 
 public class Calculator{
-	private static double circleArea;
-	private static double triOpposite;
+	private double circleArea;
+	private double triOpposite;
 	
 	public void calculateCircle(int radius){
 		circleArea = Math.pow(radius, 2.0) * Math.PI;
