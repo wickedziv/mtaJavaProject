@@ -17,10 +17,12 @@ public class Exercise03 extends HttpServlet {
 		
 		DecimalFormat df = new DecimalFormat("0.000");
 		
-		circle.calculateCircle(50);
-		triangle.calculateTriOpp(30, 50);
-		resp.getWriter().println("Circle Area is " + df.format(circle.getCircleArea()) +
+		circle.setRadius(50);
+		triangle.setDegreeHypo(30, 50);
+		
+		resp.getWriter().println("Circle Area with radius " + circle.getRadius() + " is " + df.format(circle.getCircleArea()) +
 								 "\n" +
-								 "Triangle opposite is " + df.format(triangle.getTriOpp()));
+								 "Triangle opposite where angle B is " + triangle.getAngle() + " and Hypotenuse length is " + 
+								 triangle.getHypotenuse() + " is: " + df.format(triangle.getTriOpp()));
 	}
 }
