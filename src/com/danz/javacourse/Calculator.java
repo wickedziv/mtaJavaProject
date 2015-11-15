@@ -2,9 +2,6 @@ package com.danz.javacourse;
 
 public class Calculator{
 	private double circleArea, triOpposite, uRadius, uHypotenuse, uDegree;
-//	private double triOpposite;
-//	private double radius;
-//	private double 
 	
 	public void setRadius(double radius){
 		uRadius = radius;
@@ -36,6 +33,5 @@ public class Calculator{
 		triOpposite = Math.sin(Math.toRadians(uDegree)) * uHypotenuse;
 		return triOpposite;
 	}
-	
 	
 }
