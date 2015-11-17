@@ -1,37 +1,36 @@
 package com.danz.javacourse;
 
 public class Calculator{
-	private double circleArea, triOpposite, uRadius, uHypotenuse, uDegree;
-	
+	private double circleArea, triOpposite, radius, hypotenuse, degree, rM;
+
 	public void setRadius(double radius){
-		uRadius = radius;
+		this.radius = radius;
 	}
 	
 	public double getRadius(){
-		return uRadius;
+		return radius;
 	}
 	
 	public void setDegreeHypo(double degree, double hypotenuse){
-		uHypotenuse = hypotenuse;
-		uDegree = degree;
+		this.hypotenuse = hypotenuse;
+		this.degree = degree;
 	}
 	
 	public double getHypotenuse(){
-		return uHypotenuse;
+		return hypotenuse;
 	}
 	
 	public double getAngle(){
-		return uDegree;
+		return degree;
 	}
 	
 	public double getCircleArea(){
-		circleArea = Math.pow(uRadius, 2.0) * Math.PI;
+		circleArea = Math.pow(radius, 2.0) * Math.PI;
 		return circleArea;
 	}
 	
 	public double getTriOpp(){
-		triOpposite = Math.sin(Math.toRadians(uDegree)) * uHypotenuse;
+		triOpposite = Math.sin(Math.toRadians(degree)) * hypotenuse;
 		return triOpposite;
 	}
-	
 }
