@@ -16,7 +16,7 @@ public class Exercise03 extends HttpServlet {
 		Calculator triangle = new Calculator();
 
 		DecimalFormat df = new DecimalFormat("0.000");
-
+		
 		circle.setRadius(50);
 		triangle.setDegreeHypo(30, 50);
 
