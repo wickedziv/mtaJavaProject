@@ -18,9 +18,9 @@ public class StockDetailsServlet extends HttpServlet {
 		Stock stock3 = new Stock("CAAS", 32.2f, 31.5f, new Date("11/14/2015"));
 
 		resp.getWriter().print(
-				"Stock" + stock1.getHtmlDescription() + "\n" +  
-				"Stock"	+ stock2.getHtmlDescription() + "\n" +
-				"Stock" + stock3.getHtmlDescription()
+				stock1.getHtmlDescription() + "<br></br>" +  
+				stock2.getHtmlDescription() + "<br></br>" +
+				stock3.getHtmlDescription()
 				);
 	}
 }
