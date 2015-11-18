@@ -7,6 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+ * A
+ * B
+ * D
+ * T
+ * Y
+ */
+
 @SuppressWarnings("serial")
 public class Exercise03 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
