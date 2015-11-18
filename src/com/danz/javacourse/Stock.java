@@ -5,7 +5,7 @@ import java.util.Date;
 
 /*
  * @author Dan & Ziv
- * Exercise 04
+ * Exercise 04 with HTML
  */
 
 public class Stock {
