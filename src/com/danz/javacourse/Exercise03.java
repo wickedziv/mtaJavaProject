@@ -7,13 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*
- * Ziv is a douchebag
- * D:
- * :D
- * D:
- * :D
- */
 
 @SuppressWarnings("serial")
 public class Exercise03 extends HttpServlet {
