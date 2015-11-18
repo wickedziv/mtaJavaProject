@@ -1,8 +1,13 @@
 package com.danz.javacourse;
 
 public class Calculator{
-	private double circleArea, triOpposite, radius, hypotenuse, degree, rM;
-
+	private double circleArea, triOpposite, radius, hypotenuse, degree;
+	
+	public Calculator(double radius, double hypotenuse, double degree){
+		setRadius(radius);
+		setDegreeHypo(degree,hypotenuse);
+	}
+	
 	public void setRadius(double radius){
 		this.radius = radius;
 	}

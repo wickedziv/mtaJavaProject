@@ -12,20 +12,16 @@ public class Exercise03 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-		Calculator circle = new Calculator();
-		Calculator triangle = new Calculator();
+		Calculator circleTriangleCalc = new Calculator(50,50,30);
 
 		DecimalFormat df = new DecimalFormat("0.000");
-		
-		circle.setRadius(50);
-		triangle.setDegreeHypo(30, 50);
 
 		resp.getWriter().println(
-				"Circle Area with radius " + circle.getRadius() + " is "
-						+ df.format(circle.getCircleArea()) + "\n"
+				"Circle Area with radius " + circleTriangleCalc.getRadius() + " is "
+						+ df.format(circleTriangleCalc.getCircleArea()) + "\n"
 						+ "Triangle opposite where angle B is "
-						+ triangle.getAngle() + " and Hypotenuse length is "
-						+ triangle.getHypotenuse() + " is: "
-						+ df.format(triangle.getTriOpp()));
+						+ circleTriangleCalc.getAngle() + " and Hypotenuse length is "
+						+ circleTriangleCalc.getHypotenuse() + " is: "
+						+ df.format(circleTriangleCalc.getTriOpp()));
 	}
 }
