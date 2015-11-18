@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author Dan
+ * @author Dan & Ziv
  * Exercise 04
  */
 
