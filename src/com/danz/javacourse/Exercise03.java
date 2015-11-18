@@ -8,11 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /*
+<<<<<<< HEAD
  * A
  * B
  * D
  * T
- * Y
+ * A
+ * B
+ * C
+ * D
  */
 
 @SuppressWarnings("serial")
