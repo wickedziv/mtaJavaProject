@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author Dan A KAKI :D :))))
+ * @author  A KAKI :D :))))
  * Exercise 04
  */
 
@@ -47,7 +47,7 @@ public class Stock {
 	}
 
 	public String getHtmlDescription(){
-		String returnString = (" symbol: " + getSymbol() + " ask: " + getAsk() + " bid: " + getBid() + " date: " + sdf.format(getDate()));
+		String returnString = (" <b>symbol:</b> " + getSymbol() + " <b>ask:</b> " + getAsk() + " <b>bid:</b> " + getBid() + " <b>date:</b> " + sdf.format(getDate()));
 		return returnString;
 	}
 	

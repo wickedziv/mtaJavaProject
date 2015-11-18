@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Exercise03 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		resp.setContentType("text/plain");
+		resp.setContentType("text/html");
 		Calculator circleTriangleCalc = new Calculator(50,50,30);
 
 		DecimalFormat df = new DecimalFormat("0.000");
