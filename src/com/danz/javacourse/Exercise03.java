@@ -11,16 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 public class Exercise03 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		
+		resp.setContentType("text/plain");
 		Calculator circleTriangleCalc = new Calculator(50,50,30);
 
 		DecimalFormat df = new DecimalFormat("0.000");
 
-		resp.getWriter().println(
-				"Circle Area with radius " + circleTriangleCalc.getRadius() + " is "
+		resp.getWriter().print(
+				"Circle Area with radius " + circleTriangleCalc.getRadius()
+						+ " is: "
 						+ df.format(circleTriangleCalc.getCircleArea()) + "\n"
-						+ "Triangle opposite where angle B is "
-						+ circleTriangleCalc.getAngle() + " and Hypotenuse length is "
+						+ "Triangle opposite where angle B is: "
+						+ circleTriangleCalc.getAngle()
+						+ " and Hypotenuse length is "
 						+ circleTriangleCalc.getHypotenuse() + " is: "
 						+ df.format(circleTriangleCalc.getTriOpp()));
 	}
