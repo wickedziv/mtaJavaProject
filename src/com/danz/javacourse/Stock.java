@@ -47,7 +47,7 @@ public class Stock {
 	}
 
 	public String getHtmlDescription(){
-		String returnString = (" <b>symbol:</b> " + getSymbol() + " <b>ask:</b> " + getAsk() + " <b>bid:</b> " + getBid() + " <b>date:</b> " + sdf.format(getDate()));
+		String returnString = (" <b> Stock symbol: </b> " + getSymbol() + " <b> ask: </b> " + getAsk() + " <b> bid: </b> " + getBid() + " <b> date: </b> " + sdf.format(getDate()));
 		return returnString;
 	}
 	
