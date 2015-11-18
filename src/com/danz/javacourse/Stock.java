@@ -3,8 +3,8 @@ package com.danz.javacourse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * @author  A KAKI :D :))))
+/*
+ * @author Dan & Ziv
  * Exercise 04
  */
 
