@@ -1,5 +1,6 @@
 package com.danz.javacourse;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,6 +12,7 @@ public class Stock {
 	private String symbol;
 	private float ask, bid;
 	private Date date = new Date();
+	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
 	public Stock(String symbol, float ask, float bid, Date date) {
 		setSymbol(symbol);
@@ -45,7 +47,7 @@ public class Stock {
 	}
 
 	public String getHtmlDescription(){
-		String returnString = (getSymbol() + getAsk() + getBid() + getDate());
+		String returnString = (" symbol: " + getSymbol() + " ask: " + getAsk() + " bid: " + getBid() + " date: " + sdf.format(getDate()));
 		return returnString;
 	}
 	
