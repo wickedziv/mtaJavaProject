@@ -14,10 +14,11 @@ public class Stock {
 	private Date date = new Date();
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	private int recommendation, stockQuantity;
-	private static final int BUY = 0;
-	private static final int SELL = 1;
-	private static final int REMOVE = 2;
-	private static final int HOLD = 3;
+	private static final int
+	BUY = 0,
+	SELL = 1,
+	REMOVE = 2, 
+	HOLD = 3;
 	
 	
 	public Stock(String symbol, float ask, float bid, Date date) {
