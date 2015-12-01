@@ -3,9 +3,10 @@ package com.danz.javacourse.model;
 import com.danz.javacourse.Stock;
 
 public class Portfolio {
-	private static final String title = new String("<h1>Dan & Ziv's Portfolios:</h1>");
-	private static final String ERROR_MAXPORT_SIZE = ("Max Portoflio Size Exceeded!");
-	private static final String HTMLBREAK = ("<br></br>");
+	private static final String
+	title = new String("<h1>Dan & Ziv's Portfolios:</h1>"),
+	ERROR_MAXPORT_SIZE = ("Max Portoflio Size Exceeded!"),
+	HTMLBREAK = ("<br></br>");
 	private static final int MAX_PORTFOLIO_SIZE = 5;
 	private Stock[] stocks;
 	private int portfolioSize = 0;
