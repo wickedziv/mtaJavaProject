@@ -5,22 +5,6 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Exercise03</servlet-name>
-		<servlet-class>com.danz.javacourse.Exercise03</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Exercise03</servlet-name>
-		<url-pattern>/exercise03</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>StockDetailsServlet</servlet-name>
-		<servlet-class>com.danz.javacourse.StockDetailsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>StockDetailsServlet</servlet-name>
-		<url-pattern>/exercise04</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>PortfolioServlet</servlet-name>
 		<servlet-class>com.danz.javacourse.servlet.PortfolioServlet</servlet-class>
 	</servlet>

@@ -1,12 +1,7 @@
-package com.danz.javacourse;
+package com.danz.javacourse.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-/*
- * @author Dan & Ziv
- * Exercise 04 with HTML
- */
 
 public class Stock {
 	private String symbol;
@@ -26,6 +21,12 @@ public class Stock {
 		setAsk(ask);
 		setBid(bid);
 		setDate(date);
+	}
+	
+	public Stock(Stock stock) { // copy constructor
+		this(stock.getSymbol(), stock.getAsk(), stock.getBid(), stock.getDate());
+		Date tempDate = new Date(stock.getDate().getTime());
+		this.date = tempDate;
 	}
 	
 	public String getSymbol() {

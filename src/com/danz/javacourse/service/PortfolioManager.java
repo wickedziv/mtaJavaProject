@@ -2,8 +2,8 @@ package com.danz.javacourse.service;
 
 import java.util.Date;
 
-import com.danz.javacourse.Stock;
 import com.danz.javacourse.model.Portfolio;
+import com.danz.javacourse.model.Stock;
 
 public class PortfolioManager {
 	private Portfolio portfolio = new Portfolio();
