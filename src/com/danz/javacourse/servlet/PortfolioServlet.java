@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.danz.javacourse.model.Portfolio;
-import com.danz.javacourse.model.Stock;
 import com.danz.javacourse.service.PortfolioManager;
 
 @SuppressWarnings("serial")

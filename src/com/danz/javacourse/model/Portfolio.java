@@ -1,45 +1,55 @@
+/**
+ * @author Dan
+ * @version 6
+ * Portfolio contains a Stock Object ArrayList and a title (String).
+ */
+
 package com.danz.javacourse.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Portfolio {
-	private static final String
-//	ERROR_MAXPORT_SIZE = ("Max Portoflio Size Exceeded!"),
-	HTMLBREAK = ("<br></br>");
+	private static final String HTMLBREAK = ("<br></br>");
 	private String title = new String();
-	//private static final int MAX_PORTFOLIO_SIZE = 5;
-	//private Stock[] stocks;
 	private ArrayList<Stock> stocks = new ArrayList<Stock>();
-	//private int portfolioSize = 0;
+	
 	
 	public Portfolio(){
-//		stocks = new Stock[MAX_PORTFOLIO_SIZE];
+
 	}
 	
+	/**
+	 * Copy constructor. Receives stock array list and title.
+	 * @param stocks Array List of Stocks
+	 * @param title String of Portfolio Title
+	*/
 	public Portfolio(ArrayList<Stock> stocks, String title){  // copy constructor 
 		this.stocks = new ArrayList<Stock>(stocks);
-//		this.portfolioSize = portfolioSize;
 		this.title = title;		
 	}
 	
+	/**
+	 * Copy constructor. Receives Portfolio object.
+	 * Creates a new Array list of stocks and clone's received Portfolio's stocks and sets title.
+	 * @param userPortfolio Portfolio object to copy
+	*/
 	public Portfolio(Portfolio userPortfolio){ // copy constructor
 		ArrayList<Stock> temp = new ArrayList<Stock>(userPortfolio.stocks.size());
 		for(Stock s: userPortfolio.stocks){
 			temp.add(new Stock(s));
 		}
 		this.stocks = temp;
-		setTitle(userPortfolio.title);
-		
-//		this(userPortfolio.getStocks(), 
-//				//userPortfolio.getPortfolioSize(), 
-//				userPortfolio.getTitle());
+		setTitle(userPortfolio.getTitle());
 	}
 	
 	public synchronized ArrayList<Stock> getStocks() {
 		return stocks;
 	}
 	
+	/**
+	 * Deletes an element from the stocks array list
+	 * @param index Element's index position
+	 */
 	public synchronized void deleteFromStockList(int index){
 		stocks.remove(index);
 	}
@@ -51,26 +61,19 @@ public class Portfolio {
 	public synchronized String getTitle() {
 		return title;
 	}
-
+	
+	/**
+	 * Adds stock to the array list.
+	 * @param stock Stock to add to the array.
+	 */
 	public synchronized void addStocks(Stock stock) {
 		stocks.add(stock);
-//		portfolioSize++;
-//		if(portfolioSize < MAX_PORTFOLIO_SIZE){
-//			stocks[portfolioSize] = stock;
-//			portfolioSize++;
-//		}
-//		else
-//			this.returnError();
 	}
 	
-//	public synchronized int getPortfolioSize(){
-//		return portfolioSize;
-//	}
-	
-//	public String returnError(){
-//		return ERROR_MAXPORT_SIZE; 
-//	}
-		
+	/**
+	 * Returns string containing portfolio title and all stocks in array.
+	 * @return Returns string containing title and stock data
+	 */
 	public String getHtmlString(){
 		String s1 = "";
 		for(Stock stocks: stocks){
@@ -78,15 +81,4 @@ public class Portfolio {
 		}
 		return (title+s1);
 	}
-/*		Old (Exercise 05):
- * 		String s2 = "";
-//		try{
-//			for(int i=0; i < portfolioSize; i++){
-//				s2 += (stocks[i].getHtmlDescription() + HTMLBREAK);
-//			}
-//		}
-//		catch(NullPointerException e){
-//			s2 += ("");
-//		}
-//		return (title + s2); */
-	}	
+}	
