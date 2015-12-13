@@ -7,18 +7,23 @@ package com.danz.javacourse.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Stock {
+import org.algo.model.StockInterface;
+
+
+public class Stock implements StockInterface {
 	private String symbol;
-	private float ask, bid;
+	private float ask;
+	private float bid;
 	private Date date = new Date();
-	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-	private int recommendation, stockQuantity;
-	private static final int
-	BUY = 0,
-	SELL = 1,
-	REMOVE = 2, 
-	HOLD = 3;
+//	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	private int stockQuantity;
+//	private ALGO_RECOMMENDATION recommendation = ALGO_RECOMMENDATION.BUY;
+private String recommendation;
 	
+//	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
+	
+	public Stock(){
+	}
 	
 	public Stock(String symbol, float ask, float bid, Date date) {
 		setSymbol(symbol);
@@ -31,12 +36,13 @@ public class Stock {
 	 * Copy constructor - copies received stock object
 	 * @param stock Stock object to copy
 	*/
-	public Stock(Stock stock) { // copy constructor
+	public Stock(StockInterface stock) { // copy constructor
 		this(stock.getSymbol(), stock.getAsk(), stock.getBid(), stock.getDate());
 		Date tempDate = new Date(stock.getDate().getTime());
-		this.date = tempDate;
+		setDate(tempDate);
+		setStockQuantity(((Stock) stock).getStockQuantity());
 	}
-	
+
 	public String getSymbol() {
 		return symbol;
 	}
@@ -69,12 +75,29 @@ public class Stock {
 		this.date = date;
 	}
 	
+	public synchronized int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public synchronized void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
+	public String getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(String recommendation) {
+		this.recommendation = recommendation;
+	}
+
 	/**
 	 * Returns string containing all stock members
 	 * @return	String containing Stock data members 
 	*/
 	public String getHtmlDescription(){
-		String returnString = (" <b> Stock symbol: </b> " + getSymbol() + " <b> ask: </b> " + getAsk() + " <b> bid: </b> " + getBid() + " <b> date: </b> " + sdf.format(getDate()));
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		String returnString = (" <b> Stock symbol: </b> " + getSymbol() + " <b> ask: </b> " + getAsk() + " <b> bid: </b> " + getBid() + " <b> date: </b> " + sdf.format(getDate()) + " <b> quantity: </b>" + getStockQuantity());
 		return returnString;
 	}
 	
