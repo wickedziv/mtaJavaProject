@@ -18,10 +18,9 @@ public class Stock implements StockInterface {
 //	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	private int stockQuantity;
 //	private ALGO_RECOMMENDATION recommendation = ALGO_RECOMMENDATION.BUY;
-private String recommendation;
-	
-//	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
-	
+	private String recommendation;
+	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		
 	public Stock(){
 	}
 	

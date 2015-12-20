@@ -271,10 +271,7 @@ public class Portfolio implements PortfolioInterface {
 		return s1;
 	}
 	
-	/**
-	 * Returns string containing portfolio title and all stocks in array.
-	 * @return String Returns string containing title and stock data
-	 */
+	
 	public String getHtmlString(){
 		String s1 = "";
 		String s2 = ("Total Portfolio Value: " 	+  	getTotalValue() 	+ "$" + HTMLBREAK +
