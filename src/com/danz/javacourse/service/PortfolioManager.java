@@ -19,6 +19,8 @@ import org.algo.service.MarketService;
 import org.algo.service.PortfolioManagerInterface;
 import org.algo.service.ServiceManager;
 
+import java.util.Date;
+
 import com.danz.javacourse.model.Portfolio;
 import com.danz.javacourse.model.Stock;
 //import com.danz.javacourse.model.Stock.ALGO_RECOMMENDATION;

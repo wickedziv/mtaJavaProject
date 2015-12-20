@@ -15,13 +15,10 @@ public class Stock implements StockInterface {
 	private float ask;
 	private float bid;
 	private Date date = new Date();
-//	private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	private int stockQuantity;
 //	private ALGO_RECOMMENDATION recommendation = ALGO_RECOMMENDATION.BUY;
-private String recommendation;
-	
-//	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
-	
+	private String recommendation;
+		
 	public Stock(){
 	}
 	
