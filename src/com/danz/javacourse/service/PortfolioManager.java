@@ -19,11 +19,13 @@ import org.algo.service.MarketService;
 import org.algo.service.PortfolioManagerInterface;
 import org.algo.service.ServiceManager;
 
-import java.util.Date;
-
+import com.danz.javacourse.exception.BalanceException;
+import com.danz.javacourse.exception.NotEnoguhStocks;
+import com.danz.javacourse.exception.StockAlreadyExistsException;
+import com.danz.javacourse.exception.StockNotExistException;
 import com.danz.javacourse.model.Portfolio;
 import com.danz.javacourse.model.Stock;
-//import com.danz.javacourse.model.Stock.ALGO_RECOMMENDATION;
+import com.danz.javacourse.model.Stock.ALGO_RECOMMENDATION;
 
 public class PortfolioManager implements PortfolioManagerInterface {
 	private DatastoreService dataStoreService = ServiceManager.datastoreService();
@@ -31,6 +33,11 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	public PortfolioManager(){
 	}
 	
+	@Override
+	/**
+	 * Returns portfolio from GAN database
+	 * @return portfolio Portfolio from dto
+	 */
 	public PortfolioInterface getPortfolio() {
 		PortfolioDto portfolioDto = dataStoreService.getPortfolilo();
 		return fromDto(portfolioDto);
@@ -38,6 +45,7 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	
 	/**
 	 * Update portfolio with stocks
+	 * @throws SymbolNotFoundInNasdaq If symbol wasn't found in Yahoo nasdaq
 	 */
 	@Override
 	public void update() {
@@ -68,6 +76,9 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	}
 
 	@Override
+	/**
+	 * Set's portfolio title and stores it to GAN db
+	 */
 	public void setTitle(String title) {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.setTitle(title);
@@ -75,13 +86,19 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	}
 
 	@Override
-	public void updateBalance(float value) throws PortfolioException {
+	/**
+	 * Updates portfolio's balance and stores it to GAN db
+	 */
+	public void updateBalance(float value) throws BalanceException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.updateBalance(value);
 		flush(portfolio);
 	}
 
 	@Override
+	/**
+	 * Returns portfolio status from DB (history and current) and sorts it by date (asc)
+	 * @return ret Portfolio total status array  */
 	public PortfolioTotalStatus[] getPortfolioTotalStatus () {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		Map<Date, Float> map = new HashMap<>();
@@ -132,7 +149,7 @@ public class PortfolioManager implements PortfolioManagerInterface {
 
 
 	@Override
-	public void addStock(String symbol) {
+	public void addStock(String symbol) throws StockAlreadyExistsException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		try {
 			//get current symbol values from nasdaq.
@@ -144,7 +161,7 @@ public class PortfolioManager implements PortfolioManagerInterface {
 			
 			//second thing, save the new stock to the database.
 			dataStoreService.saveStock(toDto(portfolio.findStock(symbol)));
-			
+
 			flush(portfolio);
 		} catch (SymbolNotFoundInNasdaq e) {
 			System.out.println("Stock Not Exists: "+symbol);
@@ -152,27 +169,34 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	}
 
 	@Override
-	public void buyStock(String symbol, int quantity) throws PortfolioException {
+	/**
+	 * Buys stock with received quantity and stores it in DB*/
+	public void buyStock(String symbol, int quantity) throws BalanceException, StockAlreadyExistsException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
-		Stock s1 = new Stock(portfolio.findStock(symbol));
-		portfolio.buyStock(s1, quantity);
+		portfolio.buyStock(portfolio.findStock(symbol), quantity);
 		flush(portfolio);
 	}
 
 	@Override
-	public void sellStock(String symbol, int quantity) throws PortfolioException {
+	/**
+	 * Sells stock with received quantity and stores it in DB*/
+	public void sellStock(String symbol, int quantity) throws BalanceException, NotEnoguhStocks {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.sellStock(symbol, quantity);
 		flush(portfolio);
 	}
 
 	@Override
-	public void removeStock(String symbol) throws PortfolioException {
+	/**
+	 * Removes stock from portfolio and stores it in DB*/
+	public void removeStock(String symbol) throws BalanceException, NotEnoguhStocks, StockNotExistException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.removeStock(symbol);
 		flush(portfolio);
 	}
 	
+	/**
+	 * Stores portfolio in db */
 	private void flush(Portfolio portfolio) {
 		dataStoreService.updatePortfolio(toDto(portfolio));
 	}
@@ -191,27 +215,31 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		newStock.setDate(stockDto.getDate());
 		newStock.setStockQuantity(stockDto.getQuantity());
 		if (stockDto.getRecommendation() != null)
-//			newStock.setRecommendation(ALGO_RECOMMENDATION.valueOf(stockDto.getRecommendation()));
-		newStock.setRecommendation(stockDto.getRecommendation())
-		;
+			newStock.setRecommendation(ALGO_RECOMMENDATION.valueOf(stockDto.getRecommendation()));
+//		newStock.setRecommendation(stockDto.getRecommendation())
 
 		return newStock;
 	}
 	
+	/**
+	 * toDto - Convert stock to StockDto Object
+	 * @param inStock Stock
+	 * @return dto StockDto object
+	 */
 	private StockDto toDto(StockInterface inStock) {
 		if (inStock == null) {
 			return null;
 		}
 		Stock stock = (Stock) inStock;
 		StockDto dto = new StockDto(stock.getSymbol(), stock.getAsk(), stock.getBid(), 
-				stock.getDate(), stock.getStockQuantity(), stock.getRecommendation());
+				stock.getDate(), stock.getStockQuantity(), stock.getRecommendation().name());
 		return dto;
 	}
 
 	/**
 	 * toDto - converts Portfolio to Portfolio DTO
-	 * @param portfolio
-	 * @return
+	 * @param portfolio Portfolio to convert to Dto
+	 * @return PortfolioDto Converted PortfolioDto
 	 */
 	private PortfolioDto toDto(Portfolio portfolio) {
 		StockDto[] array = null;
@@ -219,7 +247,6 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		if(stocks != null) {
 			array = new StockDto[stocks.length];
 			for (int i = 0; i < stocks.length; i++) {
-
 				array[i] = toDto(stocks[i]);
 			}
 		}
@@ -228,8 +255,8 @@ public class PortfolioManager implements PortfolioManagerInterface {
 
 	/**
 	 * fromDto - converts portfolioDto to Portfolio
-	 * @param dto
-	 * @return portfolio
+	 * @param dto PortfolioDto object
+	 * @return portfolio Portfolio converted from dto
 	 */
 	private Portfolio fromDto(PortfolioDto dto) {
 		StockDto[] stocks = dto.getStocks();
@@ -258,8 +285,8 @@ public class PortfolioManager implements PortfolioManagerInterface {
 
 	/**
 	 * toDtoList - convert List of Stocks to list of Stock DTO
-	 * @param stocks
-	 * @return stockDto
+	 * @param stocks Stocks to convert to Dto
+	 * @return stockDto converted StockDTO
 	 */
 	private List<StockDto> toDtoList(List<Stock> stocks) {
 		List<StockDto> ret = new ArrayList<StockDto>();
